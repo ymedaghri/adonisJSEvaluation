@@ -13,95 +13,60 @@
       rel="stylesheet"
     />
 
-    <style>
-      :root {
-        --sand-1: #fdfdfc;
-        --sand-2: #f9f9f8;
-        --sand-3: #f1f0ef;
-        --sand-4: #e9e8e6;
-        --sand-5: #e2e1de;
-        --sand-6: #dad9d6;
-        --sand-7: #cfceca;
-        --sand-8: #bcbbb5;
-        --sand-9: #8d8d86;
-        --sand-10: #82827c;
-        --sand-11: #63635e;
-        --sand-12: #21201c;
-      }
-    </style>
-
-    <script src="https://cdn.tailwindcss.com">
-
-    </script>
-
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: [ "Instrument Sans", "sans-serif" ]
-            },
-            colors: {
-              primary: {
-                DEFAULT: "#5A45FF",
-                lighter: "#a599ff"
-              },
-              sand: {
-                1: "var(--sand-1)",
-                2: "var(--sand-2)",
-                3: "var(--sand-3)",
-                4: "var(--sand-4)",
-                5: "var(--sand-5)",
-                6: "var(--sand-6)",
-                7: "var(--sand-7)",
-                8: "var(--sand-8)",
-                9: "var(--sand-9)",
-                10: "var(--sand-10)",
-                11: "var(--sand-11)",
-                12: "var(--sand-12)"
-              }
-            }
-          }
-        }
-      };
-    </script>
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
   <body class="min-h-screen w-screen font-sans">
+    <div class="min-h-screen flex flex-col ">
 
-    <div class="pt-4 h-full flex flex-col">
+      <nav class="sticky top-0 z-50 border-b border-border bg-surface/90 backdrop-blur">
+        <div class="mx-auto max-w-5xl px-4 py-3 flex flex-wrap items-center gap-2">
+          <a href="{{ route('home') }}" class="px-3 py-2 rounded-md text-text hover:bg-muted">Home</a>
 
-      <div>
-        <nav class="bg-sand-1 p-4 rounded shadow-md">
-          <a
-            href="{{ route('home') }}"
-            class="text-primary hover:text-white hover:bg-primary hover:rounded-md p-2"
-          >Home</a>
           <a
             href="{{ route('movies.show', { slug:'batman' }) }}"
-            class="text-primary hover:text-white hover:bg-primary hover:rounded-md p-2"
+            class="px-3 py-2 rounded-md text-text hover:bg-muted"
           >Batman</a>
+
           <a
             href="{{ route('movies.show', { slug:'guardians-of-the-galaxy' }) }}"
-            class="text-primary hover:text-white hover:bg-primary hover:rounded-md p-2"
-          >Guardians of The Galaxy</a>
+            class="px-3 py-2 rounded-md text-text hover:bg-muted"
+          >Guardians</a>
+
           <a
             href="{{ route('movies.show', { slug:'thor-ragnarok' }) }}"
-            class="text-primary hover:text-white hover:bg-primary hover:rounded-md p-2"
-          >Thor Ragnarok</a>
-        </nav>
-      </div>
-      {{-- Features --}}
-      <div class="grow mt-10 mb-8 px-16 xl:px-8 max-w-screen-xl mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+            class="px-3 py-2 rounded-md text-text hover:bg-muted"
+          >Thor</a>
 
-          <article
-            class="relative py-4 px-5 bg-white border border-transparent rounded-lg hover:border-sand-8 hover:shadow-sm transition duration-100 ease-in-out group"
-          >
+          <div class="ml-auto flex items-center gap-2">
+            <a class="px-3 py-2 rounded-md text-primary hover:bg-muted" href="#">Login</a>
+            <a class="px-3 py-2 rounded-md bg-primary text-on-primary hover:opacity-90" href="#">Sign up</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="bg-tertiary/15 text-text px-4 py-2">
+        <div class="mx-auto max-w-5xl text-sm">
+          ✨ New: browse movies by category
+        </div>
+      </div>
+
+      <ul>
+        @each(movie in movies)
+          <li>
+            <a
+              href="{{ route('movies.show', { slug: movie.slug }) }}"
+              class="px-3 py-2 rounded-md text-text hover:bg-muted"
+            >{{ movie.title }}</a>
+          </li>
+        @endeach
+      </ul>
+      <main class="flex-1 flex justify-center">
+        <div class="w-full max-w-5xl px-4 py-10">
+
+          <article class="relative py-4 px-5 bg-white border border-transparent rounded-lg ">
             <h2 class="font-semibold text-sand-12">
-              <a href="https://edgejs.dev/" target="_blank" class="flex flex-row gap-2">
+              <div class="flex flex-row gap-2">
                 <span class="bg-[#B8EAE0] h-6 w-6 flex justify-center items-center rounded">
                   <svg class="h-4 w-4 fill-[#4BBBA5]" viewBox="0 0 24 24">
                     <path
@@ -116,36 +81,18 @@
                 </span>
                 <span>Edge</span>
                 <span class="absolute inset-0"></span>
-              </a>
+              </div>
             </h2>
-
-            <p class="mt-4 text-sm text-sand-11 group-hover:text-sand-12 transition ease-in-out duration-100">
+            <p class="mt-4 text-sm">
               Write your views with ease and enjoy the power of a simple, modern and battteries included template engine. You'll love it.
             </p>
 
-            <svg
-              class="absolute top-4 right-5 opacity-0 group-hover:opacity-100 text-sand-9 w-4 h-4 transition ease-in-out duration-100"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6m-7 1 9-9m-5 0h5v5"
-              />
-            </svg>
           </article>
-
         </div>
-      </div>
+      </main>
 
-      <div
-        class="text-sm text-center [&>code]:font-medium [&>code]:text-[#a599ff] bg-sand-12 text-sand-1 relative py-2"
-      >
-        Route for this page is registered in <code>start/routes.ts</code>file, rendering <code>resources/views/pages/home.edge</code>template
-      </div>
     </div>
   </body>
+
 </html>
+

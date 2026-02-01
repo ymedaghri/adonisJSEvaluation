@@ -1,6 +1,26 @@
-* {
-  margin: 0;
-  padding: 0;
+@import 'tailwindcss';
+
+@theme {
+  /* Typo */
+  --font-sans: 'Instrument Sans', sans-serif;
+
+  /* Neutrals (backgrounds & text) */
+  --color-bg: #0b1220; /* pour mode sombre si tu veux + tard */
+  --color-surface: #ffffff; /* cartes / nav */
+  --color-muted: #f5f6f8; /* fond page */
+  --color-border: #e5e7eb; /* bordures */
+  --color-text: #0f172a; /* texte principal */
+  --color-text-muted: #475569; /* texte secondaire */
+
+  /* Brand palette */
+  --color-primary: #4f46e5; /* indigo-600 */
+  --color-secondary: #14b8a6; /* teal-500 */
+  --color-tertiary: #f59e0b; /* amber-500 */
+
+  /* “On” colors (texte sur boutons) */
+  --color-on-primary: #ffffff;
+  --color-on-secondary: #062a27;
+  --color-on-tertiary: #2a1a00;
 }
 
 html,
